@@ -41,9 +41,13 @@
 </template>
 
 <template name='item'>
-<h2>{{itemname}}</h2>
-<p>{{description}}</p>
-<p>{{dateposted}}</p>
+<div class="card card-block col-md-6 item">
+  <h4 class="card-title">{{itemname}}</h4>
+  <p class="card-text">{{description}}</p>
+  <p class="card-link" style="margin-bottom:0.3em;">Hello</p>
+  <p class="card-link" style="font-size:0.7em;margin-left:0px;">{{dateposted}}</p>
+</div>
+
 
 </template>
 

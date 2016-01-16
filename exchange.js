@@ -11,8 +11,8 @@ if (Meteor.isClient) {
       return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}});
     }else{
       return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}, "buyorsell": Session.get('buyorsell')});
-    }
   }
+}
   });
 
   Template.browse.events({

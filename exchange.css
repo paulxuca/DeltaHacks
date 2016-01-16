@@ -1,1 +1,15 @@
 /* CSS declarations go here */
+.item{
+	min-height:20vh;
+	max-height:40vh;
+}
+
+.card{
+	border-bottom-style: solid;
+	border-bottom-width: 3px;
+	border-bottom-color: gray;
+}
+
+.card:hover{
+	border-bottom-color: #0275d8;
+}
