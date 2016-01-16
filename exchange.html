@@ -1,14 +1,49 @@
 <head>
+ 
   <title>exchange</title>
 </head>
 
-<body>
-  <h1>Welcome to Meteor!</h1>
 
-  {{> hello}}
-</body>
+<template name='browse'>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<div class="row" style="padding-top:40px;">
+	<div class="container">
+
+
+	<div class="col-md-3">
+	<form class="main-search">
+		<fieldset class="form-group">
+    <label for="exampleInputEmail1">I'm Looking for:</label>
+    <input type="string" class="form-control" id="exampleInputEmail1" name="searchparam" placeholder="Something cool here">
+   </fieldset>
+
+   <fieldset class="form-group">
+    <label for="exampleSelect1">Buy or Sell?</label>
+    <select class="form-control" id="exampleSelect1" name="buyorsellparam">
+      <option value="0">Both</option>
+      <option value="1">Buy</option>
+      <option value="2">Sell</option>
+    </select>
+  </fieldset>
+
+     <button type="submit" class="btn btn-primary">Submit</button>
+	</form>	
+	</div>
+
+	<div class="col-md-9">
+	{{#each items}}
+		{{> item}}
+	{{/each}}
+	</div>
+	</div>
+</div>
+
 </template>
+
+<template name='item'>
+<h2>{{itemname}}</h2>
+<p>{{description}}</p>
+<p>{{dateposted}}</p>
+
+</template>
+
