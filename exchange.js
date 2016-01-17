@@ -63,6 +63,17 @@ Router.route('/register', {
 }
 );
 
+Router.route('/post',{
+  onBeforeAction:function(pause){
+  if (!Meteor.user()) {
+            // render the login template but keep the url in the browser the same
+            this.render('login');
+  }else{
+    this.render('post');
+  }
+}
+});
+
 Router.route('/items/:_id', {
     name: 'itempage',
     template: 'itempage',
