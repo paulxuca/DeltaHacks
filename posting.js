@@ -1,16 +1,16 @@
 if (Meteor.isClient){
 	var tags = new ReactiveArray([]);
-	Session.setDefault('tag', tags);
+	Session.setDefault('tags', tags);
 	Template.post.events({
 		'submit .posting-form':function(event){
 			event.preventDefault();
-			console.log(Session.get('tags'));
+			console.log(tags);
 			var formData = {
 				title: event.target.title.value,
 				description: event.target.description.value,
 				buyorsellparam: event.target.inlineRadioOptions.value,
 				author: Meteor.user().username,
-				tags: Session.get('tags')
+				tags: tags
 			}
 			console.log(formData);
 			var captchaData = grecaptcha.getResponse();
@@ -36,6 +36,7 @@ if (Meteor.isClient){
 			author: formData.author,
 			tags: formData.tags
 				});
+			Session.set('tag', new ReactiveArray([]));
 			Router.go('/');
 
 			}

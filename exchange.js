@@ -18,14 +18,18 @@ if (Meteor.isClient) {
 
     items:function(){
       if (Session.get('buyorsell') == 0){
-      return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}}, {sort: {createdAt: -1}});
+      var tagsformatted = $.map(Session.get('tag'), function(el) { return el })
+      console.log(tagsformatted);
+
+      return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}});
+      
     }else{
-      return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}, "buyorsell": Session.get('buyorsell')}, {sort: {createdAt: -1}});
+      return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}, "buyorsell": Session.get('buyorsell'), /* */}, {sort: {createdAt: -1}});
   }
 },
   username:function(){
     return " " + Meteor.user().username;
-  }
+  } 
   });
 
   Template.browse.events({
@@ -35,7 +39,6 @@ if (Meteor.isClient) {
       var buyorsellparam = event.target.buyorsellparam.value;
       Session.set('searched', searchparam);
       Session.set('buyorsell', buyorsellparam);
-      console.log(Session.get('buyorsell'))
     },
     'click #signout':function(event){
       Meteor.logout();
@@ -52,11 +55,14 @@ Template.MainTag.events({
        'click #MainTagAdd': function() {
         if(!checkTextField(document.getElementById("MainTagName").value)){
             SearchTag.push($('#MainTagName').val());
+            Session.set('tag', SearchTag);
             return $('#MainTagName').val('');
       }
   },
   'click .MainTagRemove': function() {
-    return SearchTag.remove(this.toString());
+    SearchTag.remove(this.toString());
+    Session.set('tag', SearchTag);
+    return SearchTag;
   }
 });
 
