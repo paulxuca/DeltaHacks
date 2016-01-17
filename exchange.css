@@ -1,7 +1,6 @@
 /* CSS declarations go here */
 .item{
-	min-height:20vh;
-	max-height:40vh;
+	min-height:140px;
 }
 
 .card{
@@ -12,4 +11,7 @@
 
 .card:hover{
 	border-bottom-color: #0275d8;
+}
+ul {
+    list-style-type: none;
 }

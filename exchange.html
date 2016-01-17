@@ -25,20 +25,41 @@
       <option value="2">Sell</option>
     </select>
   </fieldset>
-
+        
+    <!---IVAN DID THIS --->
+    <label for="select-tag">Tags</label>
+    {{> listEx}} 
+    <br>
+<!------------------->
+        
      <button type="submit" class="btn btn-primary">Submit</button>
 	</form>	
 	</div>
 
 	<div class="col-md-9">
-	{{#each items}}
-		{{> item}}
+	{{#each items}} 
+		{{> item}} 
 	{{/each}}
 	</div>
 	</div>
 </div>
-
 </template>
+
+<!---IVAN DID THIS --->
+<template name='listEx'>
+  <ul class="unstyled">
+    {{#each tag }}
+    <li>
+      <a class="btn listExRemove btn-primary btn-sm" title="Remove this name">x</a> {{ this }}
+    </li>
+    {{/each}}
+  </ul>
+  Add tag: <input id="listExName" type="text"> <a class="btn btn-primary" id="listExAdd">Add tag</a>
+    <br>
+</template>
+<!---IVAN DID THIS --->
+
+
 
 <template name='item'>
 <div class="card card-block col-md-6 item">
