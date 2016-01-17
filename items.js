@@ -3,7 +3,7 @@ Comments = new Meteor.Collection('comments');
 if (Meteor.isClient){
 	Template.itempage.helpers({
 		comments:function(){
-			return Comments.find({parent: Router.current().params._id});
+			return Comments.find({parent: Router.current().params._id},{sort: {createdAt: -1}});
 		}
 	});
 
@@ -14,7 +14,8 @@ if (Meteor.isClient){
       Comments.insert({
       	commentcontent: comment,
       	author: Meteor.user().username,
-      	parent: Router.current().params._id
+      	parent: Router.current().params._id,
+      	createdAt: new Date()
       });
       event.target.comment.value ='';
 

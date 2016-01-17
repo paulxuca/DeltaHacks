@@ -16,3 +16,12 @@
 .noa{
 	color:inherit;
 }
+
+.ingress{
+  line-height: 1.5em;
+  overflow: hidden;
+  height:3em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+	}

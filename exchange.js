@@ -29,6 +29,9 @@ if (Meteor.isClient) {
       Session.set('buyorsell', buyorsellparam);
       console.log(Session.get('buyorsell'))
       event.target.searchparam.value = "";
+    },
+    'click #signout':function(event){
+      Meteor.logout();
     }
   });
 

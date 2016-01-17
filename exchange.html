@@ -11,9 +11,19 @@
 
 
 	<div class="col-md-3">
+	{{#if currentUser}}
+	<p>Welcome back,<b>{{username}}</b>.</p>
+	<a href="/post"><p style="margin-bottom:0.2em;">Post a swap</p></a>
+	<a id="signout"><p>Sign Out</p></a>
+	{{/if}}
+	{{#unless currentUser}}
+	<p>Welcome to Student Swap!</p>
+	<a href="/login"><p>Log In</p></a>
+	{{/unless}}
+
 	<form class="main-search">
 		<fieldset class="form-group">
-    <label for="exampleInputEmail1" style="font-size:0.9em;">What are you looking for<b>{{username}}?</b></label>
+    <label for="exampleInputEmail1" style="font-size:0.9em;">What are you searching for?</label>
     <input type="text" class="form-control" id="exampleInputEmail1" name="searchparam" placeholder="Something cool here">
    </fieldset>
 

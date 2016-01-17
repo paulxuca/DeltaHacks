@@ -1,7 +1,7 @@
 <template name='item'>
 <div class="card card-block col-md-6 item">
-  <h4 class="card-title">{{itemname}}</h4>
-  <p class="card-text">{{description}}</p>
+  <h4 class="card-title ingress half">{{itemname}}</h4>
+  <p class="card-text ingress">{{description}}</p>
   <p class="card-link" style="margin-bottom:0.3em;">{{author}}</p>
   <p class="card-link" style="font-size:0.7em;margin-left:0px;margin-bottom:0px;">{{dateposted}}</p>
 </div>
@@ -10,7 +10,9 @@
 
 <template name='itempage'>
 <div class="row" style="padding-top:100px;">
+
 	<div class="container">
+	<a href="/"><p style="font-weight:600">Back to Home</p></a>
 	<h2><span class="label label-default">{{itemname}}</span></h2> 
 	<p style="font-size:0.8em">Posted by: {{author}} on {{dateposted}}</p>
 
@@ -24,6 +26,7 @@
 	{{> comment}}
 	{{/each}}
 
+	{{#if currentUser}}
 	<form class="itemcomment">
 	<div class="input-group">
       
@@ -34,14 +37,25 @@
     </div>
 
 	</form>
+	{{/if}}
+	{{#unless currentUser}}
+	<fieldset disabled>
+	<div class="form-group">
+      <label for="disabledTextInput">Please <a href="/login">Log in!</a></label>
+      <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled">
+    </div>
+    </fieldset>
+	{{/unless}}
+
 	</div>
 	
-
+	
 
 </div>
 </template>
 
 
 <template name="comment">
-{{commentcontent}}
+<p><i>{{author}}</i>: {{commentcontent}}</p>
+<p style="font-size:0.6em">{{createdAt}}</p>
 </template>
