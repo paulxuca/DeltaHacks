@@ -19,7 +19,7 @@
 
    <fieldset class="form-group">
     <label for="exampleSelect1">Buy or Sell?</label>
-    <select class="form-control" id="exampleSelect1" name="buyorsellparam">
+    <select class="form-control c-select" id="exampleSelect1" name="buyorsellparam">
       <option value="0">Both</option>
       <option value="2">Buy</option>
       <option value="1">Sell</option>
@@ -40,25 +40,4 @@
 	</div>
 </div>
 
-</template>
-
-<template name='item'>
-<div class="card card-block col-md-6 item">
-  <h4 class="card-title">{{itemname}}</h4>
-  <p class="card-text">{{description}}</p>
-  <p class="card-link" style="margin-bottom:0.3em;">{{author}}</p>
-  <p class="card-link" style="font-size:0.7em;margin-left:0px;margin-bottom:0px;">{{dateposted}}</p>
-</div>
-</template>
-
-
-<template name='itempage'>
-<div class="row" style="padding-top:100px;">
-	<div class="container">
-	<h2><span class="label label-default">{{itemname}}</span></h2> 
-	<p style="font-size:0.8em">Posted by: {{author}} on {{dateposted}}</p>
-
-	<p>{{description}}</p>
-	</div>
-</div>
 </template>

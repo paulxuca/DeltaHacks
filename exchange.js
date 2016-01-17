@@ -2,6 +2,7 @@ Items = new Meteor.Collection('items');
 
 if (Meteor.isClient) {
   Meteor.subscribe('items');
+  Meteor.subscribe('comments');
   Session.setDefault('searched', '');
   Session.setDefault('buyorsell', '0');
 
@@ -37,6 +38,10 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
 Meteor.publish('items', function () {
     return Items.find();
+  });
+
+Meteor.publish('comments', function () {
+    return Comments.find();
   });
 }
 
