@@ -25,7 +25,8 @@
       <option value="2">Sell</option>
     </select>
   </fieldset>
-        
+    <label for="MainTag">Tags</label>
+    {{> MainTag}}
      <button type="submit" class="btn btn-primary">Submit</button>
 	</form>	
 	</div>
@@ -39,7 +40,19 @@
 </div>
 </template>
 
-
+<template name='MainTag'>
+  <ul class="unstyled">
+    {{#each tag }}
+    <li>
+      <a class="btn MainTagRemove btn-primary btn-sm" title="Remove this name">x</a> {{ this }}
+    </li>
+    {{/each}}
+  </ul>
+    <form class= "addTag">
+  Add tag: <input id="MainTagName" type="text"> <a class="btn btn-primary" type="submit" id="MainTagAdd">Add tag</a>
+    </form>
+    <br>
+</template>
 
 <template name='item'>
 <div class="card card-block col-md-6 item">

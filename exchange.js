@@ -1,24 +1,43 @@
 Items = new Meteor.Collection('items');
 
 if (Meteor.isClient) {
+  var SearchTag = new ReactiveArray([]);
   Session.setDefault('searched', '');
   Session.setDefault('buyorsell', '0');
   Session.setDefault('subject', '');
+  Session.setDefault('tag', SearchTag);
 
   Template.browse.helpers({
     items:function(){
       if (Session.get('buyorsell') == 0){
       return Items.find(
-          {"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'},"tags.name": Session.get('subject')});
+          {"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'},"SearchTag.name": Session.get('subject')});
     }
       else{
       return Items.find(
           {"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}, 
            "buyorsell": Session.get('buyorsell'), 
-           "tags.name" : Session.get('subject')});
+           "SearchTag.name" : Session.get('subject')});
   }
 }
+}),
+    Template.MainTag.helpers({
+        tag: function() {
+        return SearchTag.list();
+  }
 });
+
+    Template.MainTag.events({
+        'click #MainTagAdd': function() {
+        if(!checkTextField(document.getElementById("MainTagName").value)){
+            SearchTag.push($('#MainTagName').val());
+            return $('#MainTagName').val('');
+      }
+  },
+  'click .MainTagRemove': function() {
+    return SearchTag.remove(this.toString());
+  }
+}),
     
     
   Template.browse.events({
@@ -28,7 +47,7 @@ if (Meteor.isClient) {
       var buyorsellparam = event.target.buyorsellparam.value;
       Session.set('searched', searchparam);
       Session.set('buyorsell', buyorsellparam);
-      console.log(tags);
+      console.log(SearchTag);
       event.target.searchparam.value = "";
     }
   });
@@ -36,16 +55,9 @@ if (Meteor.isClient) {
 
 }
 
-
-
-var valueInArray = function (listOne, listTwo){
-    var result = []
-    for (var i = 0; i < listOne.length; i++){
-        for (var j = 0; j < listTwo.length; j++){
-            if (listOne[i] == listTwo[j]){
-                return true
-            }
-        }
+var checkTextField = function (field) {
+    if(field == ''){
+        return true;
     }
     return false;
 }
