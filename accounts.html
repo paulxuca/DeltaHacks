@@ -1,0 +1,41 @@
+
+<template name='login'>
+<div class="row" style="padding-top:40vh">
+	<div class="container">
+		<form id="login-form" action="action">
+		 <fieldset class="form-group">
+		     <label for="login-email">Username</label> 
+        <input type="text" id="login-username" />
+         </fieldset>
+        <fieldset class="form-group"> 
+        <label for="login-password">Password</label> 
+        <input type="password" id="login-password" />
+        </fieldset>
+        <p>{{errormessagelogin}}</p>
+        <button type="submit" id="login-button" class="btn btn-primary">Sign in</button>
+        <a href='/register' id="account-button" class="btn btn-primary">Create Account</a>
+           </form>
+
+     </div>
+	</div>
+</template>
+
+<template name='register'>
+<div class="row" style="padding-top:40vh">
+	<div class="container">
+		<form id="register-form" action="action">
+         <fieldset class="form-group">
+             <label for="register-username">Username</label> 
+        <input type="text" id="register-username"/>
+         </fieldset>
+        <fieldset class="form-group"> 
+        <label for="register-password">Password</label> 
+        <input type="password" id="register-password" />
+        </fieldset>
+        <p>{{errormessageregister}}</p>
+        <button type="submit" id="login-button" class="btn btn-primary">Create Account</button>
+           </form>
+
+     </div>
+	</div>
+</template>

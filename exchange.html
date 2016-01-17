@@ -13,16 +13,16 @@
 	<div class="col-md-3">
 	<form class="main-search">
 		<fieldset class="form-group">
-    <label for="exampleInputEmail1">I'm Looking for:</label>
-    <input type="string" class="form-control" id="exampleInputEmail1" name="searchparam" placeholder="Something cool here">
+    <label for="exampleInputEmail1" style="font-size:0.9em;">What are you looking for<b>{{username}}?</b></label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="searchparam" placeholder="Something cool here">
    </fieldset>
 
    <fieldset class="form-group">
     <label for="exampleSelect1">Buy or Sell?</label>
     <select class="form-control" id="exampleSelect1" name="buyorsellparam">
       <option value="0">Both</option>
-      <option value="1">Buy</option>
-      <option value="2">Sell</option>
+      <option value="2">Buy</option>
+      <option value="1">Sell</option>
     </select>
   </fieldset>
 
@@ -32,7 +32,9 @@
 
 	<div class="col-md-9">
 	{{#each items}}
+	<a href="items/{{_id}}" class="noa">
 		{{> item}}
+	</a>
 	{{/each}}
 	</div>
 	</div>
@@ -44,10 +46,19 @@
 <div class="card card-block col-md-6 item">
   <h4 class="card-title">{{itemname}}</h4>
   <p class="card-text">{{description}}</p>
-  <p class="card-link" style="margin-bottom:0.3em;">Hello</p>
-  <p class="card-link" style="font-size:0.7em;margin-left:0px;">{{dateposted}}</p>
+  <p class="card-link" style="margin-bottom:0.3em;">{{author}}</p>
+  <p class="card-link" style="font-size:0.7em;margin-left:0px;margin-bottom:0px;">{{dateposted}}</p>
 </div>
-
-
 </template>
 
+
+<template name='itempage'>
+<div class="row" style="padding-top:100px;">
+	<div class="container">
+	<h2><span class="label label-default">{{itemname}}</span></h2> 
+	<p style="font-size:0.8em">Posted by: {{author}} on {{dateposted}}</p>
+
+	<p>{{description}}</p>
+	</div>
+</div>
+</template>

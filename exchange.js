@@ -1,6 +1,7 @@
 Items = new Meteor.Collection('items');
 
 if (Meteor.isClient) {
+  Meteor.subscribe('items');
   Session.setDefault('searched', '');
   Session.setDefault('buyorsell', '0');
 
@@ -12,7 +13,10 @@ if (Meteor.isClient) {
     }else{
       return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}, "buyorsell": Session.get('buyorsell')});
   }
-}
+},
+  username:function(){
+    return " " + Meteor.user().username;
+  }
   });
 
   Template.browse.events({
@@ -31,10 +35,31 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
-
+Meteor.publish('items', function () {
+    return Items.find();
+  });
 }
 
 
 Router.route('/', {
   template: 'browse'
+});
+
+Router.route('/login', {
+  template:'login'
+}
+);
+
+Router.route('/register', {
+  template:'register'
+}
+);
+
+Router.route('/items/:_id', {
+    name: 'itempage',
+    template: 'itempage',
+    data: function(){
+      var currentItem = this.params._id;
+      return Items.findOne({_id: currentItem});
+    }
 });
