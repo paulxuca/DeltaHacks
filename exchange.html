@@ -26,10 +26,6 @@
     </select>
   </fieldset>
         
-    <label for="select-tag">Tags</label>
-    {{> listEx}} 
-    <br>
-        
      <button type="submit" class="btn btn-primary">Submit</button>
 	</form>	
 	</div>
@@ -43,22 +39,6 @@
 </div>
 </template>
 
-<!---IVAN DID THIS --->
-<template name='listEx'>
-  <ul class="unstyled">
-    {{#each tag }}
-    <li>
-      <a class="btn listExRemove btn-primary btn-sm" title="Remove this name">x</a> {{ this }}
-    </li>
-    {{/each}}
-  </ul>
-    <form class= "addTag">
-  Add tag: <input id="listExName" type="text"> <a class="btn btn-primary" type="submit" id="listExAdd">Add tag</a>
-    </form>
-    <br>
-</template>
-<!---IVAN DID THIS --->
-
 
 
 <template name='item'>
@@ -67,6 +47,7 @@
   <p class="card-text">{{description}}</p>
   <p class="card-link" style="margin-bottom:0.3em;">Hello</p>
   <p class="card-link" style="font-size:0.7em;margin-left:0px;">{{dateposted}}</p>
+  <p class="tag-title">{{tags}}</p>
 </div>
 
 
