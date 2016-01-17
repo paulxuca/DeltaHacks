@@ -3,7 +3,7 @@
 	<div class="container">
 	<h2 style="font-weight:600">Post your swap here</h2>
 	<form class="posting-form">
-	<div class="col-md-12">
+	<div class="col-md-12" style="padding-left:0px;">
 	<span style="padding-right:20px;font-weight:400">Posting Type: </span>
 	<label class="radio-inline">
   	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"> I want
@@ -13,28 +13,24 @@
 	</label>
 	</div>
 
-	<div class="col-md-12" style="padding-top:10px;">
+	<div class="col-md-12" style="padding-top:10px;padding-left:0px">
 
 	<fieldset class="form-group">
 	<span style="padding-right:20px;font-weight:400">Posting Type: </span>
 		<input type="text" name="title" placeholder="Title of your item" style="width:50%">
 
 
-	<fieldset class="form-group">
+	<fieldset class="form-group" style="margin-bottom:0px">
     <label for="exampleTextarea">Description</label>
     <textarea class="form-control" id="exampleTextarea" rows="3" name="description"></textarea>
   </fieldset>
-
-
-
 	</fieldset>
-
-
 	</div>
+	<div class="col-md-12" style="padding-left:0px">
+	{{> reCAPTCHA}}
+	</div>
+	<button type="submit" class="btn btn-primary" style="margin-top:10px;">Submit</button>
 
-
-
-	<button type="submit" class="btn btn-primary" style="margin-left:15px;">Submit</button>
 	</form>
 	</div>
 </div>

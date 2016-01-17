@@ -21,4 +21,5 @@ chuikoff:bootstrap-4
 momentjs:moment
 accounts-base
 accounts-password
-insecure
+altapp:recaptcha
+ejson

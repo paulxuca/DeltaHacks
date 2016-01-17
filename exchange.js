@@ -1,6 +1,11 @@
 Items = new Meteor.Collection('items');
 
 if (Meteor.isClient) {
+  Meteor.startup(function() {
+    reCAPTCHA.config({
+        publickey: '6LfalhUTAAAAABalHXloAjC--UAJD9eXz39X0XMk'
+    });
+  });
   Meteor.subscribe('items');
   Meteor.subscribe('comments');
   Session.setDefault('searched', '');
@@ -10,9 +15,9 @@ if (Meteor.isClient) {
 
     items:function(){
       if (Session.get('buyorsell') == 0){
-      return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}});
+      return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}}, {sort: {createdAt: -1}});
     }else{
-      return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}, "buyorsell": Session.get('buyorsell')});
+      return Items.find({"itemname" : {$regex :".*" + Session.get('searched') + ".*", $options: 'i'}, "buyorsell": Session.get('buyorsell')}, {sort: {createdAt: -1}});
   }
 },
   username:function(){
@@ -28,7 +33,6 @@ if (Meteor.isClient) {
       Session.set('searched', searchparam);
       Session.set('buyorsell', buyorsellparam);
       console.log(Session.get('buyorsell'))
-      event.target.searchparam.value = "";
     },
     'click #signout':function(event){
       Meteor.logout();
@@ -39,6 +43,10 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
+  
+
+
+  
 Meteor.publish('items', function () {
     return Items.find();
   });

@@ -19,6 +19,10 @@ if (Meteor.isClient){
       });
       event.target.comment.value ='';
 
+    },
+    'click .authorcomment':function(event){
+    	console.log(this._id);
+
     }
 
 

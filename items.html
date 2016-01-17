@@ -1,5 +1,5 @@
 <template name='item'>
-<div class="card card-block col-md-6 item">
+<div class="card card-block col-md-12 item">
   <h4 class="card-title ingress half">{{itemname}}</h4>
   <p class="card-text ingress">{{description}}</p>
   <p class="card-link" style="margin-bottom:0.3em;">{{author}}</p>
@@ -56,6 +56,13 @@
 
 
 <template name="comment">
-<p><i>{{author}}</i>: {{commentcontent}}</p>
+
+<p class="authorcomment" id="{{_id}}">
+
+
+{{#if originalauthor}}
+<span class="label label-primary">Poster</span>
+{{/if}}
+<i>{{author}}</i>: {{commentcontent}}</p>
 <p style="font-size:0.6em">{{createdAt}}</p>
 </template>
