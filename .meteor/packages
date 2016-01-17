@@ -23,3 +23,4 @@ accounts-base
 accounts-password
 altapp:recaptcha
 ejson
+manuel:reactivearray

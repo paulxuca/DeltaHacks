@@ -1,12 +1,16 @@
 if (Meteor.isClient){
+	var tags = new ReactiveArray([]);
+	Session.setDefault('tag', tags);
 	Template.post.events({
 		'submit .posting-form':function(event){
 			event.preventDefault();
+			console.log(Session.get('tags'));
 			var formData = {
 				title: event.target.title.value,
 				description: event.target.description.value,
 				buyorsellparam: event.target.inlineRadioOptions.value,
-				author: Meteor.user().username
+				author: Meteor.user().username,
+				tags: Session.get('tags')
 			}
 			console.log(formData);
 			var captchaData = grecaptcha.getResponse();
@@ -29,7 +33,8 @@ if (Meteor.isClient){
 			description: formData.description,
 			buyorsell: formData.buyorsellparam,
 			dateposted: new Date(),
-			author: formData.author
+			author: formData.author,
+			tags: formData.tags
 				});
 			Router.go('/');
 
@@ -42,7 +47,34 @@ if (Meteor.isClient){
 
 
 	});
-	
 
 
+
+	Template.listEx.helpers({
+        tag: function() {
+        return tags.list();
+  }
+});
+
+Template.listEx.events({
+       'click #listExAdd': function() {
+        if(!checkTextField(document.getElementById("listExName").value)){
+            tags.push($('#listExName').val());
+            Session.set('tags', tags);
+            return $('#listExName').val('');
+      }
+  },
+  'click .listExRemove': function() {
+  	Session.set('tags', tags);
+    return tags.remove(this.toString());            Session.set('tags', tags)
+
+  }
+});
+}
+
+var checkTextField = function (field) {
+    if(field == ''){
+        return true;
+    }
+    return false;
 }

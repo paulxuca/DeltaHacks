@@ -26,7 +26,9 @@
   </fieldset>
 	</fieldset>
 	</div>
+	{{> listEx}}
 	<div class="col-md-12" style="padding-left:0px">
+
 	{{> reCAPTCHA}}
 	</div>
 	<button type="submit" class="btn btn-primary" style="margin-top:10px;">Submit</button>
@@ -37,4 +39,21 @@
 
 
 
+</template>
+
+
+
+
+<template name='listEx'>
+  <ul class="unstyled">
+    {{#each tag}}
+    <li>
+      <a class="btn listExRemove btn-primary btn-xs" title="Remove this name">x</a> {{ this }}
+    </li>
+    {{/each}}
+  </ul>
+    <form class= "addTag">
+  Add tag: <input id="listExName" type="text"> <a class="btn btn-primary" type="submit" id="listExAdd">Add tag</a>
+    </form>
+    <br>
 </template>

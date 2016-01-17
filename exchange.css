@@ -23,4 +23,16 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;  
-	}
+}
+
+ul {
+    list-style-type: none;
+}
+
+li{
+    display: inline;
+}
+
+.unstyled{
+  padding-left: 0px;
+}

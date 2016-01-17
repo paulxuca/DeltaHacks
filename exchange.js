@@ -1,4 +1,5 @@
 Items = new Meteor.Collection('items');
+Comments = new Meteor.Collection('comments');
 
 if (Meteor.isClient) {
   Meteor.startup(function() {
@@ -6,10 +7,12 @@ if (Meteor.isClient) {
         publickey: '6LfalhUTAAAAABalHXloAjC--UAJD9eXz39X0XMk'
     });
   });
+  var SearchTag = new ReactiveArray([]);
   Meteor.subscribe('items');
   Meteor.subscribe('comments');
   Session.setDefault('searched', '');
   Session.setDefault('buyorsell', '0');
+  Session.setDefault('tag', SearchTag);
 
   Template.browse.helpers({
 
@@ -39,14 +42,54 @@ if (Meteor.isClient) {
     }
   });
 
+ Template.MainTag.helpers({
+        tag: function() {
+        return SearchTag.list();
+  }
+});
+
+Template.MainTag.events({
+       'click #MainTagAdd': function() {
+        if(!checkTextField(document.getElementById("MainTagName").value)){
+            SearchTag.push($('#MainTagName').val());
+            return $('#MainTagName').val('');
+      }
+  },
+  'click .MainTagRemove': function() {
+    return SearchTag.remove(this.toString());
+  }
+});
+
+
 
 }
 
+var checkTextField = function (field) {
+    if(field == ''){
+        return true;
+    }
+    return false;
+}
+
+
 if (Meteor.isServer) {
-  
 
 
-  
+
+
+  Items.allow({
+    'insert': function (userId,doc) {
+      return !! userId; 
+    }
+  });
+
+  Comments.allow({
+    'insert':function(userId,doc){
+      return !! userId;
+    }
+  });
+
+
 Meteor.publish('items', function () {
     return Items.find();
   });
