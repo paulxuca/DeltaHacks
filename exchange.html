@@ -26,11 +26,9 @@
     </select>
   </fieldset>
         
-    <!---IVAN DID THIS --->
     <label for="select-tag">Tags</label>
     {{> listEx}} 
     <br>
-<!------------------->
         
      <button type="submit" class="btn btn-primary">Submit</button>
 	</form>	
@@ -54,7 +52,9 @@
     </li>
     {{/each}}
   </ul>
-  Add tag: <input id="listExName" type="text"> <a class="btn btn-primary" id="listExAdd">Add tag</a>
+    <form class= "addTag">
+  Add tag: <input id="listExName" type="text"> <a class="btn btn-primary" type="submit" id="listExAdd">Add tag</a>
+    </form>
     <br>
 </template>
 <!---IVAN DID THIS --->
